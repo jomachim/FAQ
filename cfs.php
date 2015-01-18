@@ -3,8 +3,8 @@
  * Plugin Name: Administration_FAQ
  * Plugin URI: http://www.pour-le-web.com/
  * Description: Plugin permettant de personnaliser l'administration de votre site wordpress: barre des tâches, page de login, footer de l'administration, message personnalisé dans le tableau de bord, etc.
- * Version: Version 2.1.5
- * Author: joachim
+ * Version: 0.1
+ * Author: kaiboo84
  * Author URI:  http://www.pour-le-web.com
  * License: GPL2 license
  */
