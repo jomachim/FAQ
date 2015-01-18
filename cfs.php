@@ -94,7 +94,7 @@ function faq_shortcode( $atts, $content = null) {
     'posts_per_page' => -1,
     'caller_get_posts'=> 1,
     'orderby' => 'date',
-    'order'   => $trie,
+    'order'   => $trie
     );
   $my_query = null;
   $my_query = new WP_Query($args);
