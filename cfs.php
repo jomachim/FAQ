@@ -9,6 +9,16 @@
  * License: GPL2 license
  */
 defined('ABSPATH') or die("No script kiddies please!");
+
+function override_template( $page_template )
+{
+
+if (is_page( 'faq-questions-frequentes' )) {
+$page_template = dirname( __FILE__ ) . '/page-faq.php';
+}
+
+}
+
 // AJOUT DU CUSTOM POST TYPE FAQ
 add_action('init', 'my_custom_post_init');
 
