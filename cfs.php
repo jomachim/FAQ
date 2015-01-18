@@ -74,7 +74,7 @@ add_filter('enter_title_here', 'my_custom_enter_title_here');
 
 
 function faq_shortcode( $atts, $content = null) {
- 
+ include_once('js.js');
   extract( shortcode_atts( array(
         'taxi' => '',
         'trie' => 'ASC'
@@ -87,7 +87,7 @@ function faq_shortcode( $atts, $content = null) {
   
 // magic comes here
 
-  $type = 'faq_an';
+   $type = 'faq_an';
   $args=array(
     'post_type' => $type,
     'post_status' => 'publish',
@@ -100,8 +100,9 @@ function faq_shortcode( $atts, $content = null) {
   $my_query = new WP_Query($args);
   if( $my_query->have_posts() ) {
     while ($my_query->have_posts()) : $my_query->the_post(); ?>
-      <p><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a>
-        <div class="reponse_faq_an"><?php the_content();?></div></p>
+      <p><a class="question_faq_an" href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><span>Q :</span><?php the_title(); ?></a>
+        <div class="reponse_faq_an" style="display:none"><span>R :</span><?php the_content();?></div>
+      </p>
       <?php
     endwhile;
   }
@@ -110,6 +111,7 @@ function faq_shortcode( $atts, $content = null) {
 
 }
 add_shortcode('faq_vue', 'faq_shortcode');
+
 
 
 ?>
