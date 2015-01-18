@@ -72,4 +72,42 @@ function my_custom_enter_title_here($title){
 }
 add_filter('enter_title_here', 'my_custom_enter_title_here');
 
+
+function faq_shortcode( $atts, $content = null) {
+ 
+  extract( shortcode_atts( array(
+        'taxi' => '',
+        'trie' => 'ASC'
+      ), $atts 
+    ) 
+  );
+  if($content==null || $content==''){
+    $content='<h2><div>Aucune FAQ à afficher</div>';
+  }
+  
+// magic comes here
+
+  $type = 'faq_an';
+  $args=array(
+    'post_type' => $type,
+    'post_status' => 'publish',
+    'posts_per_page' => -1,
+    'caller_get_posts'=> 1
+    );
+  $my_query = null;
+  $my_query = new WP_Query($args);
+  if( $my_query->have_posts() ) {
+    while ($my_query->have_posts()) : $my_query->the_post(); ?>
+      <p><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a>
+        <div class="reponse_faq_an"><?php the_content();?></div></p>
+      <?php
+    endwhile;
+  }
+  wp_reset_query();  // Restore global post data stomped by the_post().
+
+
+}
+add_shortcode('faq_vue', 'faq_shortcode');
+
+
 ?>
